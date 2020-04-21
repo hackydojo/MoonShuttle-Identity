@@ -2,21 +2,21 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
-from app.http_resource_routers import root_resource
+from app.api import root_resource
 from app.db import SessionLocal, engine
 from app.persistence import entities
 
-
+# Create database tables if they do not exist
 entities.Base.metadata.create_all(bind=engine)
 
-microservice_title = 'moon_shuttle'
+microservice_title = 'MoonShuttle Identity Service'
 
 # -----------------------------------------------------------------------------
 # Instance of FastAPI Application
 # -----------------------------------------------------------------------------
 app = FastAPI(
-    title="MoonShuttle Microservice Template",
-    description="A FastAPI-based template for Python-based microservices",
+    title="MoonShuttle Identity Microservice",
+    description="A FastAPI-based Identity Management Microservice",
     version="1.0.0",
     openapi_url="/{}/api/openapi.json".format(microservice_title),
     docs_url="/{}/api/docs".format(microservice_title),
